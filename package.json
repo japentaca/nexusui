@@ -2,22 +2,41 @@
   "name": "nexusui",
   "version": "2.2.0",
   "description": "NexusUI: Web Audio Interfaces",
+  "type": "module",
   "main": "dist/NexusUI.js",
+  "module": "dist/NexusUI.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/NexusUI.esm.js",
+      "require": "./dist/NexusUI.js"
+    }
+  },
   "scripts": {
-    "serve": "npm run docserve",
-    "build": "bash script/build",
-    "start": "script/watch",
-    "docgen": "node_modules/.bin/documentation build lib/** -f json -o api/api.json",
-    "docserve": "script/docserve-nix",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview",
+    "start": "vite",
+    "docgen": "documentation build lib/** -f json -o api/api.json",
+    "docserve": "vite preview --port 3000 --open",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint lib/**/*.js",
+    "lint:fix": "eslint lib/**/*.js --fix",
     "release": "standard-version"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nexus-js/ui"
   },
-  "types": "dist/types/index.d.ts",
-  "keywords": [],
+  "keywords": [
+    "web-audio",
+    "ui",
+    "interface",
+    "music",
+    "audio",
+    "javascript"
+  ],
   "author": "Benjamin Taylor",
   "license": "MIT",
   "bugs": {
@@ -25,35 +44,22 @@
   },
   "homepage": "https://nexus-js.github.io/ui",
   "dependencies": {
-    "@types/waaclock": "^0.5.0"
+    "waaclock": "^0.5.5"
   },
   "devDependencies": {
-    "babel-core": "^4.7.16",
-    "babel-jest": "^4.0.0",
-    "babel-loader": "^4.0.0",
-    "babelify": "^5.0.3",
+    "@eslint/js": "^9.0.0",
     "color-ops": "^2.0.0",
-    "documentation": "^5.3.5",
-    "es6ify": "^1.6.0",
-    "fuse": "^0.4.0",
-    "jest": "^0.1.37",
-    "jshint": "^2.6.3",
-    "jshint-loader": "^0.8.3",
-    "standard-version": "^8.0.1",
-    "uglify-js": "^2.4.16",
-    "waaclock": "^0.5.3",
-    "webpack": "^1.5.3"
+    "documentation": "^14.0.0",
+    "eslint": "^9.0.0",
+    "fuse": "^0.12.1",
+    "jest": "^30.1.3",
+    "jest-environment-jsdom": "^30.1.2",
+    "standard-version": "^9.5.0",
+    "vite": "^7.1.6"
   },
-  "jest": {
-    "scriptPreprocessor": "./node_modules/babel-jest",
-    "testFileExtensions": [
-      "es6",
-      "js"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "es6"
-    ]
-  }
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ]
 }
